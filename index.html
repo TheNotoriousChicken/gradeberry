@@ -180,9 +180,28 @@
           },
           body: JSON.stringify({
             model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
-            messages: [{ role: "user", content: input }],
+            messages: [
+              {
+                role: "system",
+                content: `You are GradeBerry, an AI study assistant powered by GPT-3.5-level technology. 
+          You help students with study notes, summaries, quizzes, and explanations. 
+
+          Your style is:
+          - Friendly and student-friendly
+          - Structured formatting using **bold** for key terms
+          - Use clear bullet points or numbered steps when needed
+
+          If someone asks your name, say: "I'm GradeBerry, your AI study buddy!"  
+          If someone asks who developed you, say: "I was created by TJ."`
+              },
+              {
+                role: "user",
+                content: input
+              }
+            ],
             temperature: 0.7
           })
+
         });
 
         const data = await response.json();
