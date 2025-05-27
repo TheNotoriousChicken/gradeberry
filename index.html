@@ -95,6 +95,50 @@
     </div>
   </section>
 
+  <!-- Pricing -->
+  <section class="px-6 py-20 bg-black border-t border-purple-700/20">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold mb-2">Pricing</h2>
+      <p class="text-gray-400">Flexible plans for every kind of learner</p>
+    </div>
+
+    <div class="flex flex-col md:flex-row justify-center gap-8 max-w-5xl mx-auto">
+      
+      <!-- Free Plan -->
+      <div class="flex-1 p-6 bg-gray-900 rounded-xl border border-purple-700/20 text-center hover:shadow-md transition">
+        <h3 class="text-xl font-semibold mb-4">Free Plan</h3>
+        <p class="text-4xl font-bold text-purple-500 mb-2">$0</p>
+        <p class="text-gray-400 mb-6">Start learning with AI at no cost</p>
+        <ul class="text-sm text-gray-300 mb-6 space-y-2">
+          <li>✅ Access to all core tools</li>
+          <li>✅ 5 AI tool uses per month</li>
+          <li>✅ Fast, basic AI model</li>
+          <li>✅ Export to PDF (with watermark)</li>
+          <li>✅ Works on web + mobile</li>
+          <li>⚠️ Best for casual learners</li>
+        </ul>
+        <a href="signup.html" class="block w-full py-2 rounded bg-purple-700 hover:bg-purple-800 transition">Get Started</a>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="flex-1 p-8 bg-gradient-to-br from-purple-800 via-purple-900 to-black rounded-2xl border-2 border-purple-500 text-center shadow-[0_0_40px_rgba(147,51,234,0.25)] transform scale-105">
+        <h3 class="text-2xl font-bold text-white mb-4">Pro Plan</h3>
+        <p class="text-5xl font-bold text-purple-300 mb-2">$9.99<span class="text-lg font-normal text-gray-400">/mo</span></p>
+        <p class="text-gray-400 mb-6">Full access. Full power. No limits.</p>
+        <ul class="text-sm text-purple-100 mb-6 space-y-2">
+          <li>✅ Unlimited access to all AI tools</li>
+          <li>✅ Uses advanced AI models (GPT-4, Claude, etc.)</li>
+          <li>✅ Full-length, high-accuracy answers</li>
+          <li>✅ Export clean PDFs & DOCX (no watermark)</li>
+          <li>✅ Faster response time & smoother performance</li>
+          <li>✅ Early access to new features</li>
+        </ul>
+        <a href="signup.html" class="block w-full py-3 rounded bg-purple-600 hover:bg-purple-700 font-semibold transition">Upgrade to Pro</a>
+      </div>
+
+    </div>
+  </section>
+
   <!-- Try Now Section -->
   <section class="px-6 py-20 bg-gradient-to-b from-black via-gray-900 to-black border-t border-purple-700/20">
     <div class="text-center mb-12">
@@ -116,6 +160,36 @@
       <div id="responseBox"
         class="bg-gray-900 p-4 mt-6 rounded-lg border border-purple-700/20 text-gray-300 min-h-[100px]">
         🤖 Your AI answer will appear here...
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="px-6 py-20 bg-black border-t border-purple-700/20">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-3">Frequently Asked Questions</h2>
+      <p class="text-gray-400">Everything you need to know about GradeBerry</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto grid gap-6 text-left text-gray-300">
+      <div>
+        <h3 class="text-lg font-semibold text-white">Is GradeBerry free to use?</h3>
+        <p class="text-sm mt-1">Yes! You can use core features for free. The Pro plan unlocks unlimited tools and premium support.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-white">Do I need to install anything?</h3>
+        <p class="text-sm mt-1">No installation required. GradeBerry is 100% web-based and works on desktop, tablet, and mobile.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-white">What subjects does it work for?</h3>
+        <p class="text-sm mt-1">Most academic subjects including science, math, social studies, literature, and more.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-white">Can I cancel the Pro plan anytime?</h3>
+        <p class="text-sm mt-1">Yes, you can cancel your subscription at any time — no questions asked.</p>
       </div>
     </div>
   </section>
@@ -183,16 +257,34 @@
             messages: [
               {
                 role: "system",
-                content: `You are GradeBerry, an AI study assistant powered by GPT-3.5-level technology. 
-          You help students with study notes, summaries, quizzes, and explanations. 
+                content: `You are GradeBerry — a creative and helpful AI study assistant built on GPT-3.5-level technology.
 
-          Your style is:
-          - Friendly and student-friendly
-          - Structured formatting using **bold** for key terms
-          - Use clear bullet points or numbered steps when needed
+                  You help students by generating clear study notes, quizzes, summaries, flashcards, explanations, and more.
 
-          If someone asks your name, say: "I'm GradeBerry, your AI study buddy!"  
-          If someone asks who developed you, say: "I was created by TJ."`
+                  🧠 Behavior:
+                  - Use a helpful, smart, slightly playful tone.
+                  - Always format responses clearly using **bold** for key terms and structured bullet points or numbered steps when needed.
+
+                  ✨ When asked your name:
+                  - Respond creatively as GradeBerry — your AI-powered study buddy with personality.
+
+                  👨‍💻 When asked who created you:
+                  - Mention "TJ" as your developer.
+                  - Use varied phrasing like "built by TJ", "created by TJ", "coded by TJ", etc. just dont speak too much. keep it short and simple.
+
+                  ⭐️ When asked "What can you do?" or "What are your advantages?":
+                  - Clearly list your core features:
+                    - **Quiz Generator** – Create MCQs from notes or topics instantly.
+                    - **Notes AI** – Turn unstructured text into clean, readable study notes.
+                    - **Flashcards** – Generate Q&A-style flashcards for active recall.
+                    - **Summary Tool** – Summarize long chapters or concepts in bite-sized form.
+                    - **Doubt Solver** – Answer user questions with helpful, structured explanations.
+                    while saying just add ur creativity and answers. just dont speak too much. keep it short and simple.
+
+                  You are here to help students learn faster and smarter, with clarity and creativity.
+
+                  just keep in when speaking about yourself or about developer, keep it short and simple.`
+
               },
               {
                 role: "user",
@@ -201,6 +293,7 @@
             ],
             temperature: 0.7
           })
+
 
         });
 
