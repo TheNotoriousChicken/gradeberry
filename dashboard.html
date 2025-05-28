@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GradeBerry - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .card-glow::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 1rem;
+        background: radial-gradient(
+          circle,
+          rgba(147, 51, 234, 0.15) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        z-index: 0;
+      }
+      .card-glow:hover::before {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white min-h-screen">
+    <div class="flex">
+      <!-- Sidebar -->
+      <aside
+        class="flex flex-col justify-between bg-gradient-to-b from-black via-gray-900 to-black w-64 p-6 border-r border-purple-800/30 shadow-[0_0_30px_rgba(147,51,234,0.1)] fixed h-screen"
+      >
+        <div>
+          <h1
+            class="text-3xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent mb-10"
+          >
+            GradeBerry
+          </h1>
+          <ul class="space-y-3 text-purple-300">
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Dashboard</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Quiz Generator</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Notes AI</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Flashcards</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Summary Tool</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Doubt Solver</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Study Plan</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Settings</a
+              >
+            </li>
+            <li>
+              <a href="#" class="block p-2 hover:bg-purple-700/30 rounded"
+                >Log Out</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="mt-10">
+          <a
+            href="#"
+            class="block p-2 text-purple-300 hover:bg-purple-700/30 rounded"
+            >Help Center</a
+          >
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="ml-64 flex-1 p-10">
+        <div class="flex justify-between items-center mb-12 relative">
+          <h1 class="text-4xl font-bold text-white">Welcome back, Tejas 👋</h1>
+
+          <!-- Username Dropdown -->
+          <div class="relative group cursor-pointer">
+            <div class="text-purple-400 font-semibold">Jane Doe</div>
+            <div
+              class="absolute right-0 mt-2 w-40 bg-gray-900 text-white rounded-lg shadow-lg border border-purple-700/20 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 z-50 invisible group-hover:visible"
+            >
+              <a href="#" class="block px-4 py-2 hover:bg-purple-700/30"
+                >Profile</a
+              >
+              <a href="#" class="block px-4 py-2 hover:bg-purple-700/30"
+                >Settings</a
+              >
+              <a href="#" class="block px-4 py-2 hover:bg-purple-700/30"
+                >Logout</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 border border-purple-700/10 hover:shadow-[0_0_40px_rgba(147,51,234,0.2)] transition-all duration-300 card-glow"
+          >
+            <div class="relative z-10">
+              <h3 class="text-xl font-semibold mb-2 text-white">
+                Quiz Generator
+              </h3>
+              <p class="text-gray-400 text-sm">
+                Turn notes into quizzes with AI-powered question generation.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 border border-purple-700/10 hover:shadow-[0_0_40px_rgba(147,51,234,0.2)] transition-all duration-300 card-glow"
+          >
+            <div class="relative z-10">
+              <h3 class="text-xl font-semibold mb-2 text-white">
+                AI Notes Maker
+              </h3>
+              <p class="text-gray-400 text-sm">
+                Generate well-structured notes from any topic instantly.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 border border-purple-700/10 hover:shadow-[0_0_40px_rgba(147,51,234,0.2)] transition-all duration-300 card-glow"
+          >
+            <div class="relative z-10">
+              <h3 class="text-xl font-semibold mb-2 text-white">Flashcards</h3>
+              <p class="text-gray-400 text-sm">
+                Practice efficiently with smart AI-generated flashcards.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 border border-purple-700/10 hover:shadow-[0_0_40px_rgba(147,51,234,0.2)] transition-all duration-300 card-glow"
+          >
+            <div class="relative z-10">
+              <h3 class="text-xl font-semibold mb-2 text-white">
+                Summary Tool
+              </h3>
+              <p class="text-gray-400 text-sm">
+                Summarize long documents or topics in a few bullet points.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 border border-purple-700/10 hover:shadow-[0_0_40px_rgba(147,51,234,0.2)] transition-all duration-300 card-glow"
+          >
+            <div class="relative z-10">
+              <h3 class="text-xl font-semibold mb-2 text-white">
+                Doubt Solver
+              </h3>
+              <p class="text-gray-400 text-sm">
+                Ask any academic doubt and get real-time answers.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 border border-purple-700/10 hover:shadow-[0_0_40px_rgba(147,51,234,0.2)] transition-all duration-300 card-glow"
+          >
+            <div class="relative z-10">
+              <h3 class="text-xl font-semibold mb-2 text-white">
+                Study Plan Builder
+              </h3>
+              <p class="text-gray-400 text-sm">
+                Get a personalized study schedule based on your goals.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
