@@ -20,42 +20,65 @@
       <p class="text-gray-400 text-sm">Sign up and start using GradeBerry</p>
     </div>
 
-    <form class="space-y-6">
-        <div>
-            <label for="name" class="block text-sm mb-1">Full Name</label>
-            <input id="name" type="text" required
-                class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
-                placeholder="John Doe">
+    <form id="signup-form" class="space-y-6">
+      <!-- Name Section -->
+      <div class="flex gap-4">
+        <div class="flex-1">
+          <label for="firstName" class="block text-sm mb-1">First Name</label>
+          <input id="firstName" type="text" required
+                 class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                 placeholder="Jane">
         </div>
-
-        <div>
-            <label for="email" class="block text-sm mb-1">Email Address</label>
-            <input id="email" type="email" required
-                class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
-                placeholder="you@example.com">
+        <div class="flex-1">
+          <label for="lastName" class="block text-sm mb-1">Last Name</label>
+          <input id="lastName" type="text" required
+                 class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                 placeholder="Doe">
         </div>
+      </div>
 
-        <div>
-            <label for="password" class="block text-sm mb-1">Password</label>
-            <input id="password" type="password" required
-                class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
-                placeholder="••••••••">
-        </div>
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm mb-1">Email Address</label>
+        <input id="email" type="email" required
+               class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+               placeholder="you@example.com">
+      </div>
 
-        <div>
-            <label for="confirm" class="block text-sm mb-1">Confirm Password</label>
-            <input id="confirm" type="password" required
-                class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
-                placeholder="••••••••">
-        </div>
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm mb-1">Password</label>
+        <input id="password" type="password" required
+               class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+               placeholder="••••••••">
+      </div>
 
-        <button type="submit"
-                class="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 font-semibold transition">
-            Sign Up
-        </button>
+      <!-- Confirm Password -->
+      <div>
+        <label for="confirm" class="block text-sm mb-1">Confirm Password</label>
+        <input id="confirm" type="password" required
+               class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600"
+               placeholder="••••••••">
+        <p id="password-error" class="text-xs text-red-500 mt-1 hidden">Passwords do not match.</p>
+        <p id="length-error" class="text-xs text-red-500 mt-1 hidden">Password must be at least 8 characters.</p>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit"
+              class="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 font-semibold transition">
+        Sign Up
+      </button>
+
+      <!-- Terms Notice -->
+      <p class="text-xs text-gray-400 text-center mt-3">
+        By signing up, you agree to our
+        <a href="terms.html" class="text-purple-400 hover:underline">Terms of Service</a>
+        and
+        <a href="privacy.html" class="text-purple-400 hover:underline">Privacy Policy</a>.
+      </p>
     </form>
 
-
+    <!-- Divider -->
     <div class="flex items-center my-4">
       <div class="flex-grow h-px bg-gray-700"></div>
       <span class="px-3 text-gray-500 text-sm">OR</span>
@@ -73,6 +96,39 @@
       <a href="login.html" class="text-purple-400 hover:underline">Log in</a>
     </p>
   </div>
+
+  <!-- Password Validation Script -->
+  <script>
+    const form = document.getElementById("signup-form");
+    const password = document.getElementById("password");
+    const confirm = document.getElementById("confirm");
+    const errorMatch = document.getElementById("password-error");
+    const errorLength = document.getElementById("length-error");
+
+    form.addEventListener("submit", (e) => {
+      let valid = true;
+
+      if (password.value.length < 8) {
+        errorLength.classList.remove("hidden");
+        password.classList.add("border-red-500", "focus:ring-red-500");
+        valid = false;
+      } else {
+        errorLength.classList.add("hidden");
+        password.classList.remove("border-red-500", "focus:ring-red-500");
+      }
+
+      if (password.value !== confirm.value) {
+        errorMatch.classList.remove("hidden");
+        confirm.classList.add("border-red-500", "focus:ring-red-500");
+        valid = false;
+      } else {
+        errorMatch.classList.add("hidden");
+        confirm.classList.remove("border-red-500", "focus:ring-red-500");
+      }
+
+      if (!valid) e.preventDefault();
+    });
+  </script>
 
 </body>
 </html>
