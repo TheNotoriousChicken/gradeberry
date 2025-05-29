@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Summary Tool – GradeBerry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Lexend', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen flex">
+
+  <!-- Sidebar -->
+  <nav class="bg-gradient-to-b from-black via-gray-900 to-black text-white w-64 fixed h-screen p-6 border-r border-purple-700/30">
+    <h1 class="text-3xl font-bold mb-10 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">GradeBerry</h1>
+    <ul class="space-y-2">
+      <li><a href="dashboard.html" class="block p-3 rounded-lg text-purple-200 hover:bg-purple-700/20">🏠 Dashboard</a></li>
+      <li><a href="#" class="block p-3 rounded-lg text-purple-200 hover:bg-purple-700/20">🧠 Quiz Generator</a></li>
+      <li><a href="#" class="block p-3 rounded-lg text-purple-200 hover:bg-purple-700/20">📝 Notes AI</a></li>
+      <li><a href="#" class="block p-3 rounded-lg text-purple-200 hover:bg-purple-700/20">❓ Doubt Solver</a></li>
+      <li><a href="#" class="block p-3 rounded-lg text-purple-200 hover:bg-purple-700/20">📇 Flashcards</a></li>
+      <li><a href="#" class="block p-3 bg-purple-700/30 text-white rounded-lg font-semibold">📄 Summary Tool</a></li>
+    </ul>
+    <div class="absolute bottom-6 left-6 text-sm text-purple-300">
+      <a href="#" class="hover:underline">🛠 Help Center</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="ml-64 flex-1 p-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex justify-between items-center mb-10">
+        <h1 class="text-2xl font-bold">📄 Summary Tool</h1>
+        <div class="text-purple-400 text-sm">Jane Doe</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Input -->
+        <div class="space-y-4">
+          <textarea id="inputText" rows="10" class="w-full p-4 rounded-lg bg-gray-800 border border-purple-700/30 text-white placeholder-gray-400 resize-none" placeholder="Paste your content here..."></textarea>
+
+          <select id="summaryType" class="w-full p-3 rounded-lg bg-gray-800 border border-purple-700/30 text-white">
+            <option value="brief">🔹 Brief</option>
+            <option value="bullet">🔸 Bullet Points</option>
+            <option value="detailed">📘 Detailed</option>
+          </select>
+
+          <button id="summarizeBtn" class="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 font-semibold transition">Summarize with AI</button>
+        </div>
+
+        <!-- Output -->
+        <div class="bg-gray-900 border border-purple-700/20 rounded-lg p-5 h-full flex flex-col">
+          <div class="flex justify-between items-center mb-3">
+            <h2 class="text-lg font-bold text-purple-400">Summary</h2>
+            <span id="summaryTypeLabel" class="text-xs bg-purple-600 px-2 py-1 rounded">–</span>
+          </div>
+          <div id="summaryText" class="text-sm leading-relaxed text-gray-400 italic">
+            Summarized text will appear here...
+          </div>
+          <div class="flex gap-3 mt-4">
+            <button id="copyBtn" class="px-4 py-2 rounded bg-purple-700 hover:bg-purple-800 text-sm font-medium transition">📋 Copy</button>
+            <button id="exportBtn" class="px-4 py-2 rounded bg-purple-700 hover:bg-purple-800 text-sm font-medium transition">📄 Export PDF</button>
+          </div>
+        </div>
+      </div>
+      </div> <!-- grid layout end -->
+
+      <p class="text-sm text-purple-400 mt-10 italic text-center">
+        ⚠️ If it says "No response", it might be due to high traffic or the API being rate-limited. Please try again later.
+      </p>
+</main>
+
+
+  <!-- JS -->
+  <script>
+    const inputText = document.getElementById("inputText");
+    const summaryType = document.getElementById("summaryType");
+    const summarizeBtn = document.getElementById("summarizeBtn");
+    const summaryText = document.getElementById("summaryText");
+    const summaryTypeLabel = document.getElementById("summaryTypeLabel");
+
+    const copyBtn = document.getElementById("copyBtn");
+    const exportBtn = document.getElementById("exportBtn");
+
+    copyBtn.addEventListener("click", () => {
+      const text = summaryText.innerText.trim();
+      if (!text || text.includes("Summarized text will appear here")) return alert("Nothing to copy.");
+      navigator.clipboard.writeText(text).then(() => alert("Copied to clipboard!"));
+    });
+
+    exportBtn.addEventListener("click", () => {
+      const text = summaryText.innerText.trim();
+      if (!text || text.includes("Summarized text will appear here")) return alert("Nothing to export.");
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const lines = doc.splitTextToSize(text, 180);
+      doc.setFontSize(14);
+      doc.setTextColor(120, 50, 200);
+      doc.text("GradeBerry", 15, 15);
+
+      doc.setFontSize(12);
+      doc.setTextColor(0);
+      doc.text(lines, 15, 30);
+
+      const pageHeight = doc.internal.pageSize.height;
+      const pageWidth = doc.internal.pageSize.width;
+      const watermark = "Generated by GradeBerry";
+      const textWidth = doc.getTextWidth(watermark);
+
+      doc.setFontSize(10);
+      doc.setTextColor(150);
+      doc.text(watermark, pageWidth - textWidth - 15, pageHeight - 10);
+
+      doc.save("summary.pdf");
+    });
+
+    summarizeBtn.addEventListener("click", async () => {
+      const text = inputText.value.trim();
+      const type = summaryType.value;
+      if (!text) return alert("Enter some text first");
+
+      summaryTypeLabel.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+      summaryText.classList.remove("italic");
+      summaryText.innerHTML = "🔄 Summarizing...";
+
+      const prompt = type === "brief"
+        ? "Summarize this in 2-3 short sentences and dont say `Here is a summary of the text in 3 short sentences:` or any other thing like that just give the content :\n\n" + text
+        : type === "bullet"
+        ? "Summarize this into clear, short bullet points and dont say `Here are the main points about this-that in clear, short bullet points:` or any other thing like that just give the content:\n\n" + text
+        : "Give a detailed paragraph summary:\n\n" + text;
+
+      try {
+        const res = await fetch("https://api.together.xyz/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer tgp_v1_wRf1bIQjSxwgngfjzB9sgBN1S8iuY8LyRP2R2_awM9I"
+          },
+          body: JSON.stringify({
+            model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
+            messages: [
+              { role: "system", content: "You are an expert summarizer." },
+              { role: "user", content: prompt }
+            ],
+            max_tokens: 800,
+            temperature: 0.7
+          })
+        });
+
+        const data = await res.json();
+        const result = data?.choices?.[0]?.message?.content || "No response.";
+        summaryText.innerHTML = type === "bullet"
+          ? `<ul class="list-disc pl-5 space-y-1 text-gray-200">${result
+              .split("\n")
+              .map(line => line ? `<li>${line.replace(/^[-*•]\s*/, "")}</li>` : "")
+              .join("")}</ul>`
+          : `<p class="text-gray-200">${result}</p>`;
+
+      } catch (err) {
+        console.error(err);
+        summaryText.innerHTML = "⚠️ Failed to get summary.";
+      }
+    });
+  </script>
+</body>
+</html>
